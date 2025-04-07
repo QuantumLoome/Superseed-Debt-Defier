@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Debt Defier - Superscore">
+<meta name="twitter:description" content="I just achieved Superscore in Debt Defier! Can you beat my score?">
+<meta name="twitter:image" content="assets/images/superscore.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Debt Defier (v4.1 - Screen Change)</title>
+  <!-- Preconnect and Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Graffiti font for a rough style -->
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap" rel="stylesheet">
+  <!-- Original fonts if needed -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- CSS Files -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/game-ui.css">
+  <link rel="stylesheet" href="css/screens.css">
+</head>
+<body>
+  
+  <!-- Game Container -->
+  <div id="gameContainer">
+    <!-- Top HUD -->
+    <div id="topArea">
+      <div id="healthIndicator">
+        <span id="healthLabel">Health</span>
+        <div id="healthSegments"></div>
+      </div>
+      <div id="topRightStats">
+        <div class="hud-stat">
+          <span id="levelDisplay">Level 1</span>
+        </div>
+        <div class="hud-stat">
+          <div class="score-icon"></div>
+          <span id="scoreDisplay">0</span>
+        </div>
+        <div class="hud-stat">
+          <span id="multiplierDisplay">x1.0</span>
+        </div>
+        <div id="bombIndicator" class="hud-stat">
+          <div id="bombIcon"></div>
+          <span id="bombCount">0</span>
+        </div>
+        <div id="dashIndicator" class="hud-stat">
+          <div id="dashIcon"></div>
+          <div id="dashCooldown"><div></div></div> <!-- Note the inner div here -->
+      </div>
+      </div>
+    </div>
+    
+    <!-- Game Wrapper with Canvas and Overlays -->
+    <div id="gameWrapper">
+      <canvas id="gameCanvas" width="600" height="450"></canvas>
+      <div id="damageFlash"></div>
+      <div id="levelMessage"></div>
+      <div id="bombFlash"></div>
+    </div>
+    
+    <!-- Bottom Area (for power-up indicators, etc.) -->
+    <div id="bottomArea">
+      <div id="powerUpIndicators"></div>
+    </div>
+    
+    <!-- Right Side Power-up Indicators -->
+    <div id="rightSidePowerUps">
+    </div>
+    
+    <!-- Touch Control Areas -->
+    <div id="joystickArea" class="touch-control-area">
+      <div id="joystickKnob"></div>
+    </div>
+    <div id="fireArea" class="touch-control-area"></div>
+    <div id="bombArea" class="touch-control-area"></div>
+    
+<!-- Update the Start Screen Overlay -->
+<div id="startScreen">
+  <div class="left-column">
+    <!-- Left column intentionally left empty -->
+  </div>
+  <div class="right-column">
+    <div id="startContent">
+      <h1 class="title">Debt Defier</h1>
+      <div id="nameInputGroup">
+        <label for="playerNameInput">Enter Your Name</label>
+        <input id="playerNameInput" type="text" placeholder="Name">
+      </div>
+      <button id="startButton">Start</button>
+      <button id="helpButton">Help</button>
+      <p><button id="toggleMusicBtn" title="Toggle Music">🎵</button></p>
+    </div>
+  </div>
+</div>
+
+<!-- Glow infront screen-->
+<div class="orange-glow"></div>
+
+    <!-- Game Over Screen -->
+    <div id="gameOverScreen">
+      <div id="gameOverContent">
+        <h1 class="title">Liquidated!</h1>
+        <p class="final-stats">
+          Defier <strong id="finalPlayerName">Player</strong> will be remembered.<br>
+        </p>
+        <div class="final-score-container">
+          <div class="final-score-label">Final Score:</div>
+          <div id="finalScoreDisplay" class="final-score-value">0</div>
+        </div>
+        <div id="gameOverButtons">
+          <button id="restartButton" class="gameOverBtn">TRY AGAIN</button>
+          <button id="shareButton" class="gameOverBtn">
+            SHARE SCORE ON X
+          </button>
+          <button id="returnMenuButton" class="gameOverBtn">RETURN TO MENU</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Pause Menu -->
+    <div id="pauseMenu">
+        <div id="pauseBackground"></div>
+        <img src="assets/images/pause-background.png" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.5; z-index: -1;">
+        <h2>PAUSED</h2>
+        <div id="pauseInfo">
+            Level: <strong id="pauseLevel">1</strong><br>
+            Score: <strong id="pauseScore">0</strong><br>
+            Multiplier: <strong id="pauseMultiplier">x1.0</strong><br>
+            Bombs: <strong id="pauseBombs">0</strong>
+        </div>
+        <div id="pauseControls">
+            Move: <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd><br>
+            Shoot: <kbd>Left Click</kbd><br>
+            Bomb: <kbd>Spacebar</kbd><br>
+            Dash: <kbd>Shift</kbd><br>
+            Pause: <kbd>ESC</kbd><kbd>P</kbd>
+        </div>
+        <button id="resumeButton">RESUME</button>
+        <button id="restartPauseButton">RESTART</button>
+    </div>
+
+  <!-- Load Scripts in Correct Order -->
+  <script src="js/config.js"></script>
+  <script src="js/utils.js"></script>
+  
+  <!-- Object Classes -->
+  <script src="js/objects/projectile.js"></script>
+  <script src="js/objects/particle.js"></script>
+  <script src="js/objects/fragment.js"></script>
+  <script src="js/objects/powerUp.js"></script>
+  <script src="js/objects/enemy.js"></script>
+  <script src="js/objects/player.js"></script>
+  
+  <!-- Managers -->
+  <script src="js/managers/poolManager.js"></script>
+  <script src="js/managers/uiManager.js"></script>
+  <script src="js/managers/inputManager.js"></script>
+  <script src="js/managers/levelManager.js"></script>
+  
+  <!-- Systems -->
+  <script src="js/systems/backgroundSystem.js"></script>
+  <script src="js/systems/collisionSystem.js"></script>
+  <script src="js/systems/renderSystem.js"></script>
+  
+  <!-- Screens -->
+  <script src="js/screens/startScreen.js"></script>
+  <script src="js/screens/gameScreen.js"></script>
+  <script src="js/screens/pauseScreen.js"></script>
+  <script src="js/screens/gameOverScreen.js"></script>
+
+  <!-- Sounds -->
+  <script src="js/managers/audioManager.js"></script>
+  
+  <!-- Main Entry Point -->
+  <script src="js/main.js"></script>
+
+  <div id="helpModal" class="modal">
+    <div class="modal-content">
+      <span id="closeHelpModal" class="close">&times;</span>
+      <h2>How to Play</h2>
+      <div class="controls-container">
+        <div class="control-group">
+          <div class="control-label">Movement</div>
+          <div class="control-keys"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></div>
+        </div>
+        <div class="control-group">
+          <div class="control-label">Shoot</div>
+          <div class="control-keys"><kbd>Left Click</kbd></div>
+        </div>
+        <div class="control-group">
+          <div class="control-label">Bomb</div>
+          <div class="control-keys"><kbd>Spacebar</kbd></div>
+        </div>
+        <div class="control-group">
+          <div class="control-label">Dash</div>
+          <div class="control-keys"><kbd>Shift</kbd></div>
+        </div>
+        <div class="control-group">
+          <div class="control-label">Pause</div>
+          <div class="control-keys"><kbd>P</kbd></div>
+        </div>
+      </div>
+      <p class="objective">In a world crushed by endless debt, a new hope emerges:
+        Superseed—the blockchain that gives back.<br>
+        You are the Debt Defier, a lone force against demonic collectors and corrupt financial horrors. 
+        Battle through fudders, erase debt, and restore balance to a broken system. Every enemy defeated repays the future. <br>
+        
+        <b>Debt is the enemy.</b><br>
+        <b>You are the defiance.</b></p>
+    </div>
+  </div>
+
+</body>
+</html>

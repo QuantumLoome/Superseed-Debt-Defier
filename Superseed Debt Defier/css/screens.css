@@ -1,0 +1,572 @@
+:root {
+    /* Colors & Fonts */
+    --main-color: #7BD0CF;
+    --bg-black: black;
+    --overlay-bg: rgba(0, 0, 0, 0.7);
+    --text-color: var(--main-color);
+    --white: #ffffff;
+    
+    /* Fonts */
+    --title-font: 'Caveat Brush', cursive;
+    --modern-font: 'Poppins', sans-serif;
+    
+    /* Common Shadows */
+    --text-shadow: 2px 2px 5px var(--bg-black);
+    --box-shadow: 2px 2px 0px rgba(0,0,0,0.8);
+  }
+  
+  /* ======================= Start Screen ======================= */
+  #startScreen { 
+      position: absolute; 
+      top: 0; 
+      left: 0; 
+      width: 100%; 
+      height: 100%; 
+      display: flex; 
+      flex-direction: row;            /* arrange content side by side */
+      justify-content: flex-end;       /* push content to the right */
+      align-items: center; 
+      padding-right: 60px;             /* space from the right edge */
+      box-sizing: border-box; 
+      background: url('../assets/images/start-screen.png') no-repeat center center; 
+      background-size: cover; 
+      z-index: 200; 
+      text-align: left; 
+      opacity: 1;                     /* ensure it's visible */
+      justify-content: space-between !important; /* Ensure left and right columns are evenly spaced */
+      padding-right: 0 !important; /* Remove the right padding that was pushing content to the right */
+  }
+  
+  #startScreen .left-column {
+    flex: 1;
+  }
+  
+  #startScreen .right-column {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #startContent {
+    text-align: center;      /* Center text and inline elements */
+    margin: auto;
+  }
+
+  #startScreen > * { 
+      opacity: 0; 
+      animation: fadeIn 0.6s ease-out forwards; 
+  }
+  
+  #startScreen h1 { animation-delay: 0.2s; } 
+  #startScreen h2 { animation-delay: 0.4s; } 
+  #startScreen .instructions-group { animation-delay: 0.6s; } 
+  #startScreen #nameInputGroup { animation-delay: 0.7s; } 
+  #startScreen button { animation-delay: 0.8s; }
+  
+  /* Start Content Container */
+  #startContent {
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.1); /* Darker overlay for readability */
+      padding: 30px;
+      border-radius: 12px;
+      max-width: 300px;
+      color: var(--main-color);
+  }
+  
+  /* Title style using Caveat Brush */
+  .title { 
+      font-family: var(--title-font); 
+      font-size: clamp(2.5rem, 8vw, 4.5rem); 
+      font-weight: 400; 
+      margin-bottom: 0; 
+      color: var(--main-color);        
+      text-shadow: var(--text-shadow); 
+      letter-spacing: normal;
+  }
+  
+  /* Subtitle: modern, easily read font */
+  .subtitle { 
+      font-family: var(--modern-font);
+      font-size: clamp(1rem, 3vw, 1.3rem); 
+      margin-top: 5px; 
+      margin-bottom: 20px; 
+      color: var(--white); 
+      font-weight: 300; 
+      text-shadow: 1px 1px 2px var(--bg-black); 
+      max-width: 90%; 
+      margin-left: auto; 
+      margin-right: auto; 
+  }
+  
+  .instructions-group { 
+      margin-bottom: 20px; 
+      opacity: 0.8; 
+  }
+  
+  .instructions { 
+      font-size: clamp(0.8rem, 2.5vw, 1rem); 
+      margin-bottom: 5px; 
+      color: #bbb; 
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6); 
+  }
+  
+  #nameInputGroup { 
+      margin-bottom: 25px; 
+      width: 100%; 
+      max-width: 300px; 
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
+  
+  #nameInputLabel { 
+      display: block; 
+      font-size: 0.9rem; 
+      color: #bbb; 
+      margin-bottom: 8px; 
+      font-weight: 500; 
+      text-shadow: 1px 1px 1px rgba(0,0,0,0.5); 
+  }
+  
+  #playerNameInput { 
+    width: 100%;
+    max-width: 250px;   /* Limit the width to a smaller size */
+    margin: 0 auto;     /* Center the input */
+    padding: 10px 15px; 
+    font-size: 1rem; 
+    background-color: rgba(255, 255, 255, 0.1); 
+    border: 1px solid rgba(255, 255, 255, 0.2); 
+    border-radius: 6px; 
+    color: var(--white); 
+    font-family: var(--modern-font); 
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.3); 
+    transition: background-color 0.2s, border-color 0.2s; 
+  }
+  
+  #playerNameInput:focus { 
+      background-color: rgba(255, 255, 255, 0.15); 
+      border-color: var(--main-color); 
+      outline: none; 
+  }
+  
+  /* Button styles for Start and Help */
+  button#startButton,
+  button#helpButton {
+      padding: 14px 40px;
+      font-size: clamp(1rem, 3.5vw, 1.3rem);
+      font-family: var(--title-font);
+      background: var(--bg-black);
+      color: var(--main-color);
+      font-weight: 400;
+      border: 2px solid var(--main-color);
+      border-radius: 0;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-shadow: none;
+      box-shadow: var(--box-shadow);
+      animation: fadeIn 0.6s 0.8s ease-out forwards, pulse 2s infinite ease-in-out;
+  }
+  
+  button#startButton:hover,
+  button#helpButton:hover { 
+      background: var(--main-color);
+      color: var(--bg-black);
+      transform: translateY(-2px);
+  }
+  
+  button#startButton:active,
+  button#helpButton:active { 
+      transform: translateY(1px);
+  }
+
+    /* Toggle Music */
+    #toggleMusicBtn {
+        padding: 14px 40px;
+        font-size: clamp(1rem, 3.5vw, 1.3rem);
+        font-family: var(--title-font);
+        background: var(--bg-black);
+        color: var(--main-color);
+        font-weight: 400;
+        border: 2px solid var(--main-color);
+        border-radius: 0;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        text-shadow: none;
+        box-shadow: var(--box-shadow);
+        animation: fadeIn 0.6s 0.8s ease-out forwards, pulse 2s infinite ease-in-out;
+        margin-left: 10px; /* Keep margin if needed */
+    }
+    
+    #toggleMusicBtn:hover {
+        background: var(--main-color);
+        color: var(--bg-black);
+        transform: translateY(-2px);
+    }
+    
+    #toggleMusicBtn:active {
+        transform: translateY(1px);
+    }
+    
+  
+  /* ======================= The rest of your file remains unchanged ======================= */
+  
+  /* Game Over Screen */
+  #gameOverScreen { 
+      position: absolute; 
+      top: 0; 
+      left: 0; 
+      width: 100%; 
+      height: 100%; 
+      display: none; 
+      flex-direction: column; 
+      align-items: center; 
+      justify-content: center; 
+      padding: 40px 20px; 
+      box-sizing: border-box; 
+      background: var(--bg-black); /* Changed to solid black background */
+      z-index: 200; 
+      text-align: center; 
+      animation: none; 
+  }
+  
+  #gameOverContent { 
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 30px 40px; 
+      border-radius: 10px; 
+      border: 0x solid var(--main-color);  /* Change pixel if line show */
+      box-shadow: 0 5px 20px rgba(0,0,0,0.5); 
+      max-width: 90%; 
+      opacity: 0; 
+      animation: fadeIn 0.5s 0.2s ease-out forwards; 
+  }
+  
+  #gameOverScreen .title { 
+      font-family: var(--title-font);
+      color: var(--main-color); 
+      text-shadow: var(--text-shadow); 
+      margin-top: -10px;
+      margin-bottom: 10px; 
+  }
+  
+  #gameOverScreen .subtitle { 
+      font-family: var(--modern-font);
+      color: var(--white); 
+      font-size: clamp(1rem, 3.5vw, 1.3rem); 
+      margin-top: 0; 
+      margin-bottom: 25px; 
+      font-weight: 400; 
+      text-shadow: 1px 1px 2px var(--bg-black); 
+      max-width: 100%; 
+  }
+  
+  #gameOverScreen .final-stats { 
+      font-size: clamp(1rem, 3vw, 1.2rem); 
+      color: #ddd; 
+      margin-bottom: 30px; 
+      line-height: 1.6; 
+  }
+  
+  #gameOverScreen .final-stats strong { 
+      color: var(--main-color); 
+  } 
+  
+  #gameOverScreen .final-stats #finalPlayerName { 
+      color: var(--main-color); 
+  }
+  
+  /* Differentiated Game Over Buttons */
+  #gameOverButtons { 
+      display: flex; 
+      flex-direction: column; 
+      align-items: center; 
+      gap: 15px; 
+      margin-top: 20px; 
+      width: 100%; 
+  }
+  
+  .gameOverBtn { 
+      padding: 12px 30px; 
+      font-size: clamp(0.9rem, 3vw, 1.1rem); 
+      font-family: var(--title-font);
+      font-weight: 400; 
+      border-radius: 8px; 
+      cursor: pointer; 
+      transition: all 0.2s ease; 
+      width: 80%; 
+      max-width: 250px; 
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.4); 
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3), inset 0 -2px 1px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.1); 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      gap: 8px; 
+  }
+  
+  /* Restart Button: Dark background, main color border */
+  button#restartButton { 
+      background: var(--bg-black); 
+      border: 2px solid var(--main-color); 
+      color: var(--main-color); 
+  }
+  button#restartButton:hover { 
+      background: var(--main-color); 
+      color: var(--bg-black); 
+  }
+  
+  /* Share Button: Inverse of Restart */
+  button#shareButton { 
+      background: var(--main-color); 
+      border: 2px solid var(--bg-black); 
+      color: var(--bg-black); 
+  }
+  button#shareButton:hover { 
+      background: var(--bg-black); 
+      color: var(--main-color); 
+  }
+  
+  /* Return Menu Button: Distinct with white border */
+  button#returnMenuButton { 
+      background: var(--bg-black); 
+      border: 2px solid var(--white); 
+      color: var(--white); 
+  }
+  button#returnMenuButton:hover { 
+      background: var(--white); 
+      color: var(--bg-black); 
+  }
+  
+  /* ======================= Pause Menu ======================= */
+  #pauseMenu { 
+      position: absolute; 
+      top: 0; 
+      left: 0; 
+      width: 100%; 
+      height: 100%; 
+      background-color: rgba(0, 0, 0, 0.9); 
+      display: none; 
+      flex-direction: column; 
+      justify-content: center; 
+      align-items: center; 
+      z-index: 190; 
+      color: var(--main-color); 
+      text-align: center; 
+      opacity: 0; 
+      transition: opacity 0.3s ease-in-out; 
+  }
+  
+  #pauseMenu.active { 
+      display: flex; 
+      opacity: 1; 
+  }
+  
+  #pauseMenu h2 { 
+      font-family: var(--title-font); 
+      font-size: 2.5rem; 
+      margin-bottom: 20px; 
+      color: var(--main-color); 
+      text-shadow: var(--text-shadow); 
+  }
+  
+  #pauseInfo { 
+      margin-bottom: 30px; 
+      font-size: 1.1rem; 
+      line-height: 1.8; 
+      color: var(--white);
+  }
+  
+  #pauseInfo strong { 
+      color: var(--main-color); 
+  }
+  
+  #pauseControls { 
+      font-size: 0.9rem; 
+      color: #ccc; 
+      margin-bottom: 30px; 
+      line-height: 1.6; 
+  }
+  
+  #resumeButton { 
+      padding: 12px 35px; 
+      font-size: 1.2rem; 
+      background: var(--bg-black); 
+      color: var(--main-color); 
+      font-weight: 600; 
+      border: 2px solid var(--main-color); 
+      border-radius: 8px; 
+      cursor: pointer; 
+      transition: all 0.2s ease; 
+      text-shadow: none; 
+      box-shadow: var(--box-shadow); 
+  }
+  
+  #resumeButton:hover { 
+      background: var(--main-color); 
+      color: var(--bg-black); 
+      transform: translateY(-2px); 
+  }
+  
+  #resumeButton:active { 
+      transform: translateY(1px); 
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); 
+  }
+  
+  #gameWrapper {
+      position: relative;
+      z-index: 1;
+  }
+  
+  #restartPauseButton { 
+    padding: 12px 35px; 
+    font-size: 1.2rem; 
+    background: black; 
+    color: #7BD0CF; 
+    font-weight: 600; 
+    border: 2px solid #7BD0CF; 
+    border-radius: 8px; 
+    cursor: pointer; 
+    transition: all 0.2s ease; 
+    text-shadow: none; 
+    box-shadow: 2px 2px 0px rgba(0,0,0,0.8); 
+    margin-top: 10px;
+}
+
+#restartPauseButton:hover { 
+    background: #7BD0CF; 
+    color: black; 
+    transform: translateY(-2px); 
+}
+
+#restartPauseButton:active { 
+    transform: translateY(1px); 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3); 
+}
+
+#pauseMenu {
+    backdrop-filter: blur(5px);
+    /* or add a semi-transparent overlay */
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+
+  /* ---------------------- Split Layout (if used) ---------------------- */
+  .split-layout {
+    display: flex;
+    width: 900px;
+    height: 600px;
+    background: url('assets/images/start-screen.png') no-repeat center center;
+    background-size: cover;
+    box-shadow: 0 0 20px rgba(0,0,0,0.6);
+    border-radius: 12px;
+    overflow: hidden;
+    margin: auto;
+  }
+  
+  .left-half {
+    flex: 1;
+  }
+  
+  .right-half {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(2px);
+    background: rgba(0, 0, 0, 0.4);
+    padding: 30px 20px;
+  }
+  
+  #title {
+      font-family: var(--title-font);
+      font-size: clamp(3rem, 6vw, 5rem);
+      color: var(--main-color);
+      text-align: center;
+      line-height: 1;
+      margin-bottom: 30px;
+      text-shadow: 2px 2px 10px var(--bg-black);
+  }
+  
+  .button-row {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+ /* Enhanced final score display */
+.final-score-container {
+  margin: 15px 0 25px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.final-score-label {
+  font-size: 1.2rem;
+  color: var(--white);
+  margin-bottom: 5px;
+}
+
+.final-score-value {
+  font-size: 3.5rem; /* Much larger font */
+  font-weight: bold;
+  color: var(--main-color);
+  text-shadow: 0 0 10px rgba(123, 208, 207, 0.5); /* Glow effect */
+  font-family: var(--title-font);
+  line-height: 1;
+  padding: 10px 20px;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 8px;
+  min-width: 150px;
+  text-align: center;
+  border: 1px solid rgba(123, 208, 207, 0.3);
+}
+
+/* Adjust the existing final-stats class to work with the new layout */
+#gameOverScreen .final-stats {
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  color: #ddd;
+  margin-bottom: 5px;
+  line-height: 1.6;
+}
+  
+/* Pulse glow behind image */
+@keyframes pulseGlow {
+    0% { 
+      opacity: 0.3;
+      box-shadow: 0 0 50px 20px rgba(255, 140, 0, 0.3);
+    }
+    50% { 
+      opacity: 0.5;
+      box-shadow: 0 0 100px 30px rgba(255, 140, 0, 0.5);
+    }
+    100% { 
+      opacity: 0.3;
+      box-shadow: 0 0 50px 20px rgba(255, 140, 0, 0.3);
+    }
+  }
+  
+/* Pulsing orange glow effect for game over screen */
+.orange-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 199; /* Just below the gameOverScreen z-index of 200 */
+    background: radial-gradient(circle at center, 
+                               rgba(255, 140, 0, 0) 0%, 
+                               rgba(255, 140, 0, 0.1) 50%, 
+                               rgba(255, 100, 0, 0.2) 80%, 
+                               rgba(255, 69, 0, 0.3) 100%);
+    display: none; /* Initially hidden */
+    animation: pulseGlow 4s infinite ease-in-out;
+  }
+  
+  @keyframes pulseGlow {
+    0% { opacity: 0.3; }
+    50% { opacity: 0.7; }
+    100% { opacity: 0.3; }
+  }

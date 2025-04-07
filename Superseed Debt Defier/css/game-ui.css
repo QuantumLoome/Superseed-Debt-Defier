@@ -1,0 +1,204 @@
+/* Game UI Elements */
+
+/* Health Indicator */
+#healthIndicator { 
+    display: flex; 
+    align-items: center; 
+    flex-shrink: 0; 
+}
+
+#healthLabel { 
+    color: #e74c3c; 
+    font-weight: bold; 
+    font-size: 14px; 
+    margin-right: 10px; 
+    text-transform: uppercase; 
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); 
+}
+
+#healthSegments { 
+    display: flex; 
+    gap: 4px; 
+}
+
+.health-segment { 
+    width: 20px; 
+    height: 20px; 
+    transition: background-color 0.3s ease, border-color 0.3s ease; 
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.4); 
+}
+
+.health-segment.full { 
+    background-image: url('../assets/images/health-full.png');
+    background-size: contain;
+}
+
+.health-segment.empty { 
+    background-image: url('../assets/images/health-empty.png');
+    background-size: contain;
+}
+
+/* Top Right Stats */
+#topRightStats { 
+    display: flex; 
+    align-items: center; 
+    gap: 15px; 
+}
+
+.hud-stat { 
+    display: flex; 
+    align-items: center; 
+    gap: 6px; 
+    font-size: 15px; 
+    font-weight: 500; 
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8); 
+}
+
+.score-icon { 
+    width: 20px; 
+    height: 20px; 
+    background-image: url('../assets/images/score-icon.png');
+    background-size: contain;
+}
+
+#multiplierDisplay { 
+    color: #2ecc71; 
+    font-weight: bold; 
+}
+
+/* Bomb Indicator */
+#bombIndicator { 
+    display: flex; 
+    align-items: center; 
+    gap: 4px; 
+}
+
+#bombIcon { 
+    width: 20px; 
+    height: 20px; 
+    background-image: url('../assets/images/bomb-icon.png');
+    background-size: contain;
+}
+
+#bombCount { 
+    color: #e67e22; 
+    font-weight: bold; 
+}
+
+/* Dash Indicator */
+#dashIndicator {
+    position: relative; /* Important: keep it within the top bar layout */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border: 0px solid #7BD0CF;
+    border-radius: 6px;
+    background-color: rgba(123, 208, 207, 0.1);
+    overflow: hidden;
+  }
+  
+  #dashIcon {
+    width: 100%;
+    height: 100%;
+    background-image: url('../assets/images/dash-icon.png'); /* Make sure the path is correct */
+    background-size: cover;
+    background-position: center;
+  }
+  
+  #dashCooldown {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+  
+  #dashCooldown > div {
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 100%;
+    height: 100%;
+    transition: height 0.1s ease-out;
+  }
+
+  #dashIndicator.ready {
+    border: 2px solid #7BD0CF;
+    animation: pulseReady 1s infinite;
+}
+
+@keyframes pulseReady {
+    0%   { box-shadow: 0 0 0px #7BD0CF; }
+    50%  { box-shadow: 0 0 10px #7BD0CF; }
+    100% { box-shadow: 0 0 0px #7BD0CF; }
+}
+  
+
+/* Power-up Indicators */
+#powerUpIndicators { 
+    display: flex; 
+    flex-direction: row; 
+    gap: 10px; 
+    flex-wrap: wrap; 
+    justify-content: flex-end; 
+}
+
+.power-up-indicator {
+    background-color: transparent;
+    padding: 6px 10px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    font-size: 12px;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
+    margin-bottom: 3px;
+    /* Remove width so that they size naturally */
+    /* width: 100%; */
+    max-width: 180px;
+}
+
+.power-up-icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    margin-right: 6px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 4px;
+
+}
+
+.rapid-fire-icon { 
+    background-image: url('../assets/images/rapid-fire-icon.png'); 
+    background-color: #f1c40f;
+}
+
+.double-damage-icon { 
+    background-image: url('../assets/images/double-damage-icon.png'); 
+    background-color: #9b59b6; 
+}
+
+.speed-boost-icon { 
+    background-image: url('../assets/images/speed-boost-icon.png'); 
+    background-color: #2ecc71; 
+}
+
+.spread-shot-icon { 
+    background-image: url('../assets/images/spread-shot-icon.png'); 
+    background-color: #3498db; 
+}
+
+.piercing-shot-icon { 
+    background-image: url('../assets/images/piercing-shot-icon.png'); 
+    background-color: #e67e22; 
+}
+
+.homing-missile-icon { 
+    background-image: url('../assets/images/homing-missile-icon.png'); 
+    background-color: #1abc9c; 
+}
